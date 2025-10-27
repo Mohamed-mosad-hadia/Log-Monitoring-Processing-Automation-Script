@@ -1,23 +1,28 @@
-Current Disk Usage : 91%
-⚠ Disk usage is above 80% Warning!
--------------------------
-Top 5 Processes by RAM usage :
+===== Daily Monitoring Report (2025-10-27) =====
+Disk usage: 91%
+⚠ WARNING: Disk usage above 80%!
+----------------------------------
+Top 5 processes by memory usage:
 USER PID %CPU %MEM COMMAND
-mohamed+ 270 0.1 0.0 -bash
-mohamed+ 286 0.0 0.0 /bin/bash
-mohamed+ 300 0.0 0.0 ps
-mohamed+ 302 0.0 0.0 awk
-root 6 0.0 0.0 plan9
--------------------------
-Network Check :
-✅ Networking is Online!
--------------------------------
-Counting Raw log files.... 
-Number of RAW log files: 0
--------------------------
-Moving logs .....
-No log files found to move.
--------------------------
-Cleaning up logs older than 7 days...
+mohamed+ 83 0.1 0.0 -bash
+mohamed+ 98 0.0 0.0 /bin/bash
+mohamed+ 116 0.0 0.0 ps
+mohamed+ 118 0.0 0.0 awk
+mohamed+ 117 0.0 0.0 head
+----------------------------------
+Checking network connection...
+✅ Network is ONLINE
+----------------------------------
+Processing Log Files...
+Access Log Found: access_log_2025-09-21.log
+Moved → access_log_2025-10-27_20-46-33.log
+Error Log Found: error_log_2025-09-21.log
+Moved → error_log_2025-10-27_20-46-33.log
+General Log Found: general_log_2025-09-21.log
+Moved → general_log_2025-10-27_20-46-33.log
+----------------------------------
+Cleaning logs older than 7 days...
 ✅ Cleanup complete
--------------------------
+----------------------------------
+✅ Monitoring completed successfully!
+==================================
