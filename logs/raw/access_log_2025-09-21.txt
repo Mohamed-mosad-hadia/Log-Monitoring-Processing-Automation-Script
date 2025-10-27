@@ -1,0 +1,6 @@
+2025-09-21 08:01:10 INFO User admin logged in
+2025-09-21 08:03:33 INFO User guest accessed dashboard
+2025-09-21 08:06:20 INFO File uploaded successfully
+2025-09-21 08:09:15 INFO User admin logged out
+2025-09-21 08:12:42 INFO User test created new report
+2025-09-21 08:18:05 INFO User guest downloaded file

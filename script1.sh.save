@@ -1,0 +1,118 @@
+#!/bin/bash
+
+
+
+#Variables
+TODAY=$(date +%Y-%m-%d)
+RAW_DIR=~/project_pipeline/logs/raw
+PROCESSED_DIR=~/project_pipeline/logs/processed
+REPORT_FILE=~/project_pipeline/reports/report_$TODAY.txt
+
+
+
+
+
+#---------------------------------------------------
+#                Functions
+#---------------------------------------------------
+
+
+
+
+
+
+
+#__________Check_size__________#
+check_size_disk() {
+	size=$(df /  | awk 'NR==2 {print $5}' | sed 's/%//')
+	echo "Current Disk Usage : $size%" | tee -a "$REPORT_FILE"
+if [ "$size" -gt 80 ]; then
+	echo "Disk usage is above 80% Warning!" |tee -a "$REPORT_FILE"
+else
+	echo "Disk usage is stable." | tee -a "$REPORT_FILE"
+fi
+
+}
+
+
+
+
+
+#_____________top_5_process______#
+top_process() {
+echo "Top 5 Processes by RAM usage :" | tee -a "$REPORT_FILE"
+ps aux --sort=-%mem | awk 'NR==1 || NR <=6 print{$1,$2,$3,$4,$11}' | tee -a "$REPORT_FILE"
+echo "-------------------------" | tee -a "$REPORT_FILE"
+}
+
+
+
+
+
+
+
+#_____________Network_ping___________#
+network_check() {
+echo "Network Check :" | tee -a "$REPORT_FILE"
+if ping -c 4 google.com >/dev/null 2>&1; then
+	echo "Networking is Online!" | tee -a "$REPORT_FILE"
+else
+	echo "Netwoking is down!" tee -a  "$REPORT_FILE"
+	exit 1
+fi
+echo "-------------------------------" | tee -a "$REPORT_FILE"
+
+
+
+
+
+
+#_____________________Count File in RAW Dir ____________
+count_logs() {
+echo "Counting Raw log file.... " | tee -a "$REPORT_FILE"
+file_count=$(ls "$RAW_DIR"/*.log 2>/dev/null | wc-l)
+
+echo "Number of RAW log files: $file_count" | tee -a "$REPORT_FILE"
+    echo "-------------------------" | tee -a "$REPORT_FILE"
+}
+
+
+
+
+
+#___________________move  file to processed dir_______________________
+move_logs() {
+echo "Moving logs ....." | tee -a "$REPORT_FILE"
+if [-n "$(ls -A $RAW_DIR/*.log 2>/dev/null)"];then
+	mv "$RAW_DIR"/*.log "$PROCESSED_DIR"
+	echo "files moved successfully " | tee -a "$REPORT_FILE"
+else
+	 echo "No log files found to move." | tee -a "$REPORT_FILE"
+fi
+
+    echo "-------------------------" | tee -a "$REPORT_FILE"
+}
+
+
+
+
+#_____________ Cleanup Old Processed Logs _____________#
+cleanup_old_logs() {
+    echo "Cleaning up logs older than 7 days..." | tee -a "$REPORT_FILE"
+
+    find "$PROCESSED_DIR"/*.log -mtime +7 -type f -exec rm {} \;
+
+    echo "Cleanup complete ✅" | tee -a "$REPORT_FILE"
+    echo "-------------------------" | tee -a "$REPORT_FILE"
+}
+
+
+
+#--------------------Calling------------------#
+check_size_disk
+top_process
+network_check
+count_logs
+move_logs
+cleanup_old_logs
+

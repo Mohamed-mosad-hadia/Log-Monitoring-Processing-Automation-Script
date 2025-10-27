@@ -1,0 +1,23 @@
+Current Disk Usage : 91%
+⚠ Disk usage is above 80% Warning!
+-------------------------
+Top 5 Processes by RAM usage :
+USER PID %CPU %MEM COMMAND
+mohamed+ 270 0.1 0.0 -bash
+mohamed+ 286 0.0 0.0 /bin/bash
+mohamed+ 300 0.0 0.0 ps
+mohamed+ 302 0.0 0.0 awk
+root 6 0.0 0.0 plan9
+-------------------------
+Network Check :
+✅ Networking is Online!
+-------------------------------
+Counting Raw log files.... 
+Number of RAW log files: 0
+-------------------------
+Moving logs .....
+No log files found to move.
+-------------------------
+Cleaning up logs older than 7 days...
+✅ Cleanup complete
+-------------------------
