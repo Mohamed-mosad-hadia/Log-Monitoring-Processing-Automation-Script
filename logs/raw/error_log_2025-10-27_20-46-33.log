@@ -1,0 +1,6 @@
+2025-09-21 08:00:12 ERROR Database connection failed
+2025-09-21 08:05:45 ERROR Timeout while querying API
+2025-09-21 08:10:00 ERROR Failed to load configuration file
+2025-09-21 08:15:30 WARNING Disk usage at 82%
+2025-09-21 08:20:15 ERROR Out of memory
+2025-09-21 08:25:42 INFO Recovery process started
